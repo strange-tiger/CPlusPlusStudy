@@ -158,7 +158,7 @@ int main()
 	left_value--; // 6
 	--left_value; // 5
 
-	cout << left_value++ << endl;	// 출력 : 5, 메모리 : 6	// 증감연산은 ;으로 종료를 해야 수행된다.
+	cout << left_value++ << endl;	// 출력 : 5, 메모리 : 6	// 증감연산은 cout 다음으로 수행된다.
 	cout << ++left_value << endl;	// 출력 : 7, 메모리 : 7
 
 	cout << left_value-- << endl;	// 출력 : 7, 메모리 : 6
