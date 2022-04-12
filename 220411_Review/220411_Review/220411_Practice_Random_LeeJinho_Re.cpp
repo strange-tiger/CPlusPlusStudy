@@ -58,11 +58,11 @@ int main()
 
 	// 난수 생성
 	srand(time(NULL));
-	numRandom2 = rand();
+	numRandom3 = rand();
 	srand(time(NULL));
-	numRandom2 += rand();
-	numRandom2 %= numMax - numMin + 1;
-	numRandom2 += numMin;
+	numRandom3 += rand();
+	numRandom3 %= numMax - numMin + 1;
+	numRandom3 += numMin;
 
 	// 문제 제시
 	cout << "1부터 9까지의 수 중 어느 것일지 맞추시오." << endl;

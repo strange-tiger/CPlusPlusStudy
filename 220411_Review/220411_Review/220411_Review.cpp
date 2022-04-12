@@ -5,10 +5,8 @@
 
 */
 
-
 // 220411_Review.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
-
 
 /*
 	C++ 문법을 사용할 때 주의해야 할 점
@@ -126,7 +124,7 @@
 	  함수 내부에 seed값이 있어서 이 값에 의해서 리턴값이 정해진다.
 	  기본적으로 seed : 1로 세팅되어 있다.
 
-	  srand(time(NULL)); 시간을 매개변수로 seed값 변화시켜 세팅.
+	  srand(time(NULL)); 시간을 매개변수로 seed값 변화시켜 세팅. 4Byte
 */
 
 /*
@@ -138,6 +136,99 @@
 	실습3. 프로그램을 실행하면 내부적으로 1 ~ 9 사이의 숫자가 정답으로 정해진다. 유저가 1 ~ 9 사이의 숫자를 입력하면 맞으면 true, 틀리면 false를 출력한다.
 */
 
+/*
+	220412
+	과제 해설
+	#pragma : #pragma region (영역이름) ~ #pragma endregion
+	코드의 구역을 나누어, 주석 없이도 접었다폈다 가능
+
+	제어문
+		데이터(타입) / 연산자 / <제어구조>
+
+	1. 조건문 : 특정 조건에 따라서 실행문을 실행할지 안할지 제어 : if / switch
+	2. 반복문 : 특정 조건에 따라서 실행문을 일정 횟수만큼 반복 실행 제어 : while / for
+
+	조건문
+	1_1. if문
+
+	if (조건식1)
+	{
+		실행문1;
+	}
+	else if (조건식2)
+	{
+		실행문2;
+	}
+	else
+	{
+		실행문3;
+	}
+
+	조건문 실습1.
+	정수를 하나 입력 받아서
+	입력 받은 숫자가 10보다 크면 "입력된 숫자가 10보다 큽니다." 출력
+	10 이하 9 초과 이면 "9보다 큽니다." 출력
+	9 이하 6 초과 이면 "6보다 큽니다." 출력
+	그 이외에는 "6보다 작거나 같습니다." 출력
+
+	1_2. switch문
+
+	switch (정수형 변수)
+	{
+		case 정수1:
+			실행문1;
+		break;
+		case 정수2:
+			실행문2;
+		break;
+		case -3:
+			실행문3;
+		break;
+		default:	// 해당하는 정수값이 없을 때. if문의 else 역할
+			실행문4;
+		break;
+	}
+
+	조건문 실습2. switch문 실습
+	당신의 고향은 어디입니까?
+	1. 서울	2. 양평	3. 광주	4. 대전	5. 제주도
+	_1
+
+	안녕하세요. 당신의 고향은 서울이군요.
+	안녕하수꽝. 혼저옵서예.
+	그 외 : 5개 중에 선택해주세요.
+
+	반복문
+	2_1. while문
+
+	while (조건식)
+	{
+		실행문;
+		조건식을 바꾸는 실행문;	// while문을 중단시키는 첫번째 방법, 증감식
+
+		if (조건식)
+		{
+			break;				// while문을 중단시키는 두번째 방법
+		}
+	}
+
+	2_2. do-while문
+
+	do							// 실행을 먼저 한 번 하고,
+	{
+		실행문;
+	}
+	while (조건식);				// 다시 실행할 지를 판별
+
+	2_3. for문
+
+	for ((1) 초기식; (2) 조건식; (3) 증감식)
+	{
+		(4) 실행문;
+	}
+
+	(1) -> (2) -> (4) -> (3) -> (2) -> (4) -> (3) -> ... 조건식의 값이 0이 나올 때까지
+*/
 #include <iostream>
 #include <string>
 
@@ -145,113 +236,640 @@ using namespace std;
 
 int main()
 {
-	// 실습1
-
-	int inputMin1;
-	int inputMax1;
-	int numRandom1;
-
-	// 변수 초기화
-	inputMin1 = 3;
-	inputMax1 = 7;
+	//220411 내용
 	
-	// 난수 생성
-	srand(time(NULL));
-	numRandom1 = rand();
-	srand(time(NULL));
-	numRandom1 += rand();
-	numRandom1 %= 5;
-	numRandom1 += 3;
+	#pragma region 실습과제
+		// 실습1
+		/*
+		int inputMin1;
+		int inputMax1;
+		int numRandom1;
+		
+		// 변수 초기화
+		inputMin1 = 3;
+		inputMax1 = 7;
+
+		// 난수 생성
+		srand(time(NULL));
+		numRandom1 = rand();
+		srand(time(NULL));
+		numRandom1 += rand();
+		numRandom1 %= 5;
+		numRandom1 += 3;
+
+		// 출력
+		cout << numRandom1 << endl;
+
+		// 실습2
+
+		int inputMin2;
+		int inputMax2;
+		int numRandom2;
+
+		// 입력
+		cout << "난수 범위 최솟값 입력" << endl;
+		cin >> inputMin2;
+		cout << "난수 범위 최댓값 입력" << endl;
+		cin >> inputMax2;
+
+		// 난수 생성
+		srand(time(NULL));
+		numRandom2 = rand();
+		srand(time(NULL));
+		numRandom2 += rand();
+		numRandom2 %= inputMax2 - inputMin2 + 1;
+		numRandom2 += inputMin2;
+
+		// 출력
+		cout << numRandom2 << endl;
+
+		// 실습3
+
+		int numMin = 1;
+		int numMax = 9;
+		int numRandom3;
+		int playerAnswer = 0;
+
+		// 난수 생성
+		srand(time(NULL));
+		numRandom3 = rand();
+		srand(time(NULL));
+		numRandom3 += rand();
+		numRandom3 %= numMax - numMin + 1;
+		numRandom3 += numMin;
+
+		// 문제 제시
+		cout << "1부터 9까지의 수 중 어느 것일지 맞추시오." << endl;
+		cin >> playerAnswer;
+
+		// 정답 비교
+		cout << boolalpha << (playerAnswer == numRandom3) << endl;
+	#pragma endregion
+
+		//srand(time(NULL));
+		//cout << rand() << endl;
+		//(10 > 5) ? std::cout << "10이 5보다 크다." : std::cout << "10이 5보다 작다.";
+		//std::cout << std::endl;
+		//std::cout << !-300 << std::endl; // 0
+		//std::cout << ((10 < 5) == 0) << std::endl; // 1
+
+		//int input_key = 10;
+		//std::cout << input_key << input_key++ << std::endl; // 예상 : 1011 결과값 : 1110
+		//std::cout << input_key++ << input_key++ << std::endl; // 예상 : 1112 결과값 : 1211
+		//std::cout << input_key++ << input_key << std::endl; // 예상 : 1011 결과값 : 1011
+		//cout이 블랙박스 상태 => 수의 순서가 바뀌는 이유가 불명, 증감연산 두 번 이어서는 비추천
+
+		//std::cout << &input_key << std::endl;	// 메모리주소
+		//std::cout << input_key++ << std::endl;	// 10	증감연산은 cout 다음으로 수행된다.
+		//std::cout << ++input_key << std::endl;	// 12
+		//std::cout << input_key-- << std::endl;	// 12
+		//std::cout << --input_key << std::endl;	// 10
+
+		//float testFloat = 5.3f;
+		//float testFloat2 = 5.3;
+		//char testCharacter = 'a';
+		//std::string testString = "Hello";
+
+		//std::cout << "Hello World!\n";
+		//std::cin >> input_key;
+		
+	#pragma region 실습1해설
 	
-	// 출력
-	cout << numRandom1 << endl;
+		int rand_num;
+		// 입력
 
-	// 실습2
+		// 처리
+		srand(time(NULL));
+		//rand(); // 0 ~ 32767 % 5
 
-	int inputMin2;
-	int inputMax2;
-	int numRandom2;
+		rand_num = 3 + rand() % 5;
+		// 3 + 0, 3 + 1, 3 + 2, 3 + 3, 3 + 4;
 
+		// 출력 - 숫자 하나 출력
+		cout << rand_num << endl;
+	#pragma endregion
+
+	#pragma region 실습2해설
+
+		// 입력
+		int input_min_number;
+		int input_max_number;
+		cin >> input_min_number;
+		cin >> input_max_number;
+
+		// 처리
+		rand_num = input_min_number + rand() % (input_max_number - input_min_number + 1);
+
+		// 출력
+		cout << rand_num << endl;
+		
+	#pragma endregion
+
+	#pragma region 실습3해설
+
+		// 입력
+		int input_quiz_number;
+		cin >> input_quiz_number;
+
+		// 처리
+		int correct_number;
+		correct_number = 1 + rand() % 9;
+
+		// 출력 : true, false
+		(input_quiz_number == correct_number) ? cout << "true" << endl : cout << "false" << endl;
+		*/
+	#pragma endregion
+	
+	// #pragma : #pragma region (영역이름) ~ #pragma endregion
+	// 코드의 구역을 나누어, 주석 없이도 접었다폈다 가능
+
+#pragma region 조건문실습1
+/*
 	// 입력
-	cout << "난수 범위 최솟값 입력" << endl;
-	cin >> inputMin2;
-	cout << "난수 범위 최댓값 입력" << endl;
-	cin >> inputMax2;
+	int input_num;
+	cin >> input_num;
 
-	// 난수 생성
-	srand(time(NULL));
-	numRandom2 = rand();
-	srand(time(NULL));
-	numRandom2 += rand();
-	numRandom2 %= inputMax2 - inputMin2 + 1;
-	numRandom2 += inputMin2;
-
+	// 처리
 	// 출력
-	cout << numRandom2 << endl;
+	cout << "입력된 숫자가 ";
+	if (input_num > 10)
+	{
+		cout << "10보다 큽니다." << endl;
+	}
+	else if (input_num > 9)
+	{
+		cout << "9보다 큽니다." << endl;
+	}
+	else if (input_num > 6)
+	{
+		cout << "6보다 큽니다." << endl;
+	}
+	else
+	{
+		cout << "6보다 작거나 같습니다." << endl;
+	}
+	*/
+#pragma endregion
+	// if 문은 사실 중괄호가 없어도 컴파일링이 가능하다. 두 줄 이상의 코드를 묶어 if문의 안에 넣기 위해 중괄호를 넣는다.
+	/*
+		if (input_num > 10)
+			cout << "10보다 큽니다." << endl; // 실행가능
 
-	// 실습3
+		if (input_num > 10)
+			cout << "10보다 큽니다." << endl; // 이것만 if문 안에 들어감
+			cout << "9보다 큽니다." << endl;
+	*/
 
+#pragma region 조건문실습2
+/*
+	cout << "당신의 고향은 어디입니까?\n1. 서울	2. 양평	3. 광주	4. 대전	5. 제주도" << endl;
+	// 입력
+	int hometown_num;
+	cin >> hometown_num;
+	cout << endl;
+
+	// 처리
+	// 출력
+	switch (hometown_num)
+	{
+	case 1:
+		cout << "안녕하세요. 당신의 고향은 서울이군요." << endl;
+		break;
+	case 2:
+		cout << "안녕하세요. 당신의 고향은 양평이군요." << endl;
+		break;
+	case 3:
+		cout << "안녕하세요. 당신의 고향은 광주이군요." << endl;
+		break;
+	case 4:
+		cout << "안녕하세요. 당신의 고향은 대전이군요." << endl;
+		break;
+	case 5:
+		cout << "안녕하수꽝. 당신의 고향은 제주도이군요. 혼저옵서예." << endl;
+		break;
+	default:
+		cout << "5개 중에 선택해주세요." << endl;
+		break;
+	}
+	*/
+#pragma endregion
+	// break; 를 빠트리면 종료되지 않고 다음 경우의 실행문까지 실행된다.
+
+#pragma region 조건문실습2_2
+/*
+	cout << "당신의 고향은 어디입니까?\n1. 서울	2. 양평	3. 광주	4. 대전	5. 제주도" << endl;
+	// 입력
+	// int hometown_num;
+	cin >> hometown_num;
+	cout << endl;
+
+	// 처리
+	// 출력
+	if (hometown_num == 1)
+	{
+		cout << "안녕하세요. 당신의 고향은 서울이군요." << endl;
+	}
+	else if (hometown_num == 2)
+	{
+		cout << "안녕하세요. 당신의 고향은 양평이군요." << endl;
+	}
+	else if (hometown_num == 3)
+	{
+		cout << "안녕하세요. 당신의 고향은 광주이군요." << endl;
+	}
+	else if (hometown_num == 4)
+	{
+		cout << "안녕하세요. 당신의 고향은 대전이군요." << endl;
+	}
+	else if (hometown_num == 5)
+	{
+		cout << "안녕하수꽝. 당신의 고향은 제주도이군요. 혼저옵서예." << endl;
+	}
+	else
+	{
+		cout << "5개 중에 선택해주세요." << endl;
+	}
+	*/
+#pragma endregion
+
+#pragma region 반복문예제while
+	// Hello World를 5번 출력하는 프로그램
+	/*
+	int repeat_count = 0;
+	while (repeat_count < 5)
+	{
+		cout << "Hello World" << endl;
+		repeat_count++;
+	}
+
+	repeat_count = 0;
+	while (1)
+	{
+		cout << "Hello World" << endl;
+		repeat_count++;
+
+		if (repeat_count >= 5)
+		{
+			break;
+		}
+	}
+
+	repeat_count = 0;
+	do
+	{
+		cout << "Hello World" << endl;
+		repeat_count++;
+	}
+	while (repeat_count < 5);
+	*/
+#pragma endregion
+
+#pragma region 실습3
+	// while문을 써서 정답을 맞출 때까지 반복되는 프로그램으로 수정해보자.
+	/*
 	int numMin = 1;
 	int numMax = 9;
-	int numRandom3;
-	int playerAnswer = 0;
+	int randNum;
+	int userAnswer = 0;
 
 	// 난수 생성
 	srand(time(NULL));
-	numRandom3 = rand();
+	randNum = rand();
 	srand(time(NULL));
-	numRandom3 += rand();
-	numRandom3 %= numMax - numMin + 1;
-	numRandom3 += numMin;
+	randNum += rand();
+	randNum %= numMax - numMin + 1;
+	randNum += numMin;
 
 	// 문제 제시
 	cout << "1부터 9까지의 수 중 어느 것일지 맞추시오." << endl;
-	cin >> playerAnswer;
+	cout << "미리보는 정답 : " << randNum << endl;
+	cin >> userAnswer;
 
-	// 정답 비교
-	cout << boolalpha << (playerAnswer == numRandom3) << endl;
+	// 정답 제시
+	while (1)
+	{
+		cout << boolalpha << "답 : " << userAnswer << " => " << (userAnswer == randNum) << endl;
+		
+		//(userAnswer != randNum) ? cin >> userAnswer : break;
 
-	//srand(time(NULL));
-	//cout << rand() << endl;
-	//(10 > 5) ? std::cout << "10이 5보다 크다." : std::cout << "10이 5보다 작다.";
-	//std::cout << std::endl;
+		if (userAnswer == randNum)
+		{
+			cout << "정답" << endl;
+			break;
+		}
 
-	//std::cout << !-300 << std::endl; // 0
+		cin >> userAnswer;
+	}
+	*/
+#pragma endregion
 
-	//std::cout << ((10 < 5) == 0) << std::endl; // 1
+#pragma region 반복문예제for
+/*
+	for (int i = 0; i < 5; i++)
+	{
+		cout << "Hello World" << endl;
+	}
+	*/
+#pragma endregion
 
-	//int input_key = 10;
-	//
-	///*
-	//std::cout << input_key << input_key++ << std::endl; // 예상 : 1011 결과값 : 1110
-	//std::cout << input_key++ << input_key++ << std::endl; // 예상 : 1112 결과값 : 1211
-	//std::cout << input_key++ << input_key << std::endl; // 예상 : 1011 결과값 : 1011
-	//cout이 블랙박스 상태 => 수의 순서가 바뀌는 이유가 불명, 증감연산 두 번 이어서는 비추천
-	//*/
+	/*
+		for문 실습1.
+		10부터 1까지 차례대로 출력되는 코드를 작성해보자.
+		10
+		9
+		...
+		1
 
-	//std::cout << &input_key << std::endl;	// 메모리주소
-	//std::cout << input_key++ << std::endl;	// 10	증감연산은 cout 다음으로 수행된다. 
-	//std::cout << ++input_key << std::endl;	// 12
-	//std::cout << input_key-- << std::endl;	// 12
-	//std::cout << --input_key << std::endl;	// 10
+		실습2.
+		100 미만의 3의 배수를 차례대로 출력하는 코드를 작성해보자.
+		3
+		6
+		9
+		...
+		99
 
-	//float testFloat = 5.3f;
-	//float testFloat2 = 5.3;
-	//char testCharacter = 'a';
-	//std::string testString = "Hello";
+		실습3.
+		1000 미만의 2의 승수를 차례대로 출력하는 코드를 작성해보자.
+		1
+		2
+		4
+		8
+		16
+		32
+		64
+		128
+		256
+		512
 
+		실습4.
+		구구단을 출력해보자.
+		4_1. 구구단 2단을 차례대로 출력해보자.
+		2 * 1 = 2
+		2 * 2 = 4
+		2 * 3 = 6
+		2 * 4 = 8
+		2 * 5 = 10
+		2 * 6 = 12
+		2 * 7 = 14
+		2 * 8 = 16
+		2 * 9 = 18
+		4_2. 구구단 2 ~ 9단을 차례대로 출력해보자.
+		2단
 
-	//std::cout << "Hello World!\n";
-	//std::cin >> input_key;
+		3단
+
+		4단
+		...
+		9단
+		4_3. 구구단 2단 ~ 9단을 다음과 같은 형태로 출력해보자.
+		2단	3단	4단
+
+		5단	6단	7단
+		
+		8단	9단
+
+		별찍기
+    1) 
+    *
+    **
+    ***
+    ****
+    *****
+    
+    2) 
+        *
+       **
+      ***
+     ****
+    *****
+
+    3) 
+    *****
+    ****
+    ***
+    **
+    *
+    
+    4) 
+    *****
+     ****
+      ***
+       **
+        *
+    
+    5)
+            *
+           ***
+          *****
+         *******
+        *********
+        
+    6)
+        *********
+         *******
+          *****
+           ***
+            *
+          
+    7)
+            *
+           ***
+          *****
+         *******
+        *********
+         *******
+          *****
+           ***
+            *
+	*/
+#pragma region for문실습1
+	/*
+	for (int i = 10; i > 0; i--)
+	{
+		cout << i << endl;
+	}
+	cout << endl;
+	*/
+#pragma endregion
+
+#pragma region for문실습2
+	/*
+	for (int i = 3; i < 100; i += 3)
+	{
+		cout << i << endl;
+	}
+	cout << endl;
+	*/
+#pragma endregion
+
+#pragma region for문실습3
+	/*
+	for (int i = 1; i < 1000; i *= 2)
+	{
+		cout << i << endl;
+	}
+	cout << endl;
+	*/
+#pragma endregion
+
+#pragma region for문실습4
+	/*
+	// 4_1
+	cout << "실습 4_1" << endl << endl;
+
+	for (int i = 1; i < 10; i++)
+	{
+		cout << 2 << " * " << i << " = " << 2 * i << endl;
+	}
+	cout << endl;
+
+	// 4_2
+	cout << "실습 4_2" << endl << endl;
+
+	for (int i = 2; i < 10; i++)
+	{
+		for (int j = 1; j < 10; j++)
+		{
+			cout << i << " * " << j << " = " << i * j << endl;
+		}
+		cout << endl;
+	}
+	cout << endl ;
+
+	//4_3
+	cout << "실습 4_3" << endl << endl;
+
+	for (int i = 2; i < 9; i += 3)
+	{
+		for (int j = 1; j < 10; j++)
+		{
+			for (int k = i; k < i + 3; k++) {
+				if (k > 9) 
+				{
+					break;
+				}
+				cout << k << " * " << j << " = " << k * j << "\t"; // 탭(tab) - "\t"
+			}
+			cout << endl << endl;
+		}
+		cout << endl;
+	}
+	*/
+#pragma endregion
+
+#pragma region 숙제1
+	for (int i = 1; i < 6; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제2
+	for (int i = 1; i < 6; i++)
+	{
+		for (int j = 5; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < i; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제3
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 5; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제4
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			cout << " ";
+		}
+		for (int j = 5; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제5
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 4; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < 2 * i + 1; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제6
+	for (int i = 0; i < 10; i += 2)
+	{
+		for (int j = 0; j < i; j += 2)
+		{
+			cout << " ";
+		}
+		for (int j = 9; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 숙제7
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 4; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < 2 * i + 1; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	for (int i = 2; i < 10; i += 2)
+	{
+		for (int j = 0; j < i; j += 2)
+		{
+			cout << " ";
+		}
+		for (int j = 9; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
 }
-
-// 프로그램 실행: <Ctrl+F5> 또는 [디버그] > [디버깅하지 않고 시작] 메뉴
-// 프로그램 디버그: <F5> 키 또는 [디버그] > [디버깅 시작] 메뉴
-
-// 시작을 위한 팁: 
-//   1. [솔루션 탐색기] 창을 사용하여 파일을 추가/관리합니다.
-//   2. [팀 탐색기] 창을 사용하여 소스 제어에 연결합니다.
-//   3. [출력] 창을 사용하여 빌드 출력 및 기타 메시지를 확인합니다.
-//   4. [오류 목록] 창을 사용하여 오류를 봅니다.
-//   5. [프로젝트] > [새 항목 추가]로 이동하여 새 코드 파일을 만들거나, [프로젝트] > [기존 항목 추가]로 이동하여 기존 코드 파일을 프로젝트에 추가합니다.
-//   6. 나중에 이 프로젝트를 다시 열려면 [파일] > [열기] > [프로젝트]로 이동하고 .sln 파일을 선택합니다.
