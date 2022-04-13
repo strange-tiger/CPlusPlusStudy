@@ -232,15 +232,23 @@ int main()
 	gameEscape[0] = rand();
 	srand(time(NULL));
 	gameEscape[0] += rand();
-	gameEscape[0] %= 9;
-	gameEscape[0] += 1;
+	gameEscape[0] %= 10;
+	
 	// y축
 	srand(time(NULL));
 	gameEscape[1] = rand();
 	srand(time(NULL));
 	gameEscape[1] += rand();
-	gameEscape[1] %= 9;
-	gameEscape[1] += 1;
+	gameEscape[1] %= 10;
+	
+	// gameEscape = {0, 0} 제외
+	while (gameEscape[0] == 0 && gameEscape[1] == 0)
+	{
+		gameEscape[0] = rand();
+		gameEscape[0] %= 10; 
+		gameEscape[1] = rand();
+		gameEscape[1] %= 10;
+	}
 
 	// gameMap 초기화
 	for (int j = 0; j < 10; j++)
@@ -278,10 +286,9 @@ int main()
 		{
 			gameKey -= 32;
 		}
-		// 플레이어 위치 변경
 		bool errBool = 0;
-
-		if (gameKey == 'W') 
+		// 플레이어 위치 변경 (if 문)
+		/*if (gameKey == 'W') 
 		{
 			gamePlayerPosition[1] -= 1;
 		}
@@ -300,9 +307,28 @@ int main()
 		else
 		{
 			errBool = 1;
+		}*/
+		// 플레이어 위치 변경 (switch문)
+		switch (gameKey)
+		{
+		case 'W':
+			gamePlayerPosition[1] -= 1;
+			break;
+		case 'A':
+			gamePlayerPosition[0] -= 1;
+			break;
+		case 'S':
+			gamePlayerPosition[1] += 1;
+			break;
+		case 'D':
+			gamePlayerPosition[0] += 1;
+			break;
+		default:
+			errBool = 1;
+			break;
 		}
-
-		// 이동 한계
+		
+		// 이동 한계 (if문)
 		if (gamePlayerPosition[0] > 9)
 		{
 			gamePlayerPosition[0] -= 1;
