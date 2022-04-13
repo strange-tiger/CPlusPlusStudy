@@ -234,8 +234,19 @@
 
 using namespace std;
 
+void star_10(int i, int j, int num) 
+{
+	if ((i / num) % 3 == 1 && (j / num) % 3 == 1)
+		cout << " ";
+	else if (num / 3 == 0)
+		cout << "*";
+	else
+		star_10(i, j, num / 3);
+}
+
 int main()
 {
+	
 	//220411 내용
 	
 	#pragma region 실습과제
@@ -758,6 +769,7 @@ int main()
 #pragma endregion
 
 #pragma region 숙제1
+	/*
 	for (int i = 1; i < 6; i++)
 	{
 		for (int j = 0; j < i; j++)
@@ -767,9 +779,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제2
+	/*
 	for (int i = 1; i < 6; i++)
 	{
 		for (int j = 5; j > i; j--)
@@ -783,9 +797,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제3
+	/*
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 5; j > i; j--)
@@ -795,9 +811,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제4
+	/*
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < i; j++)
@@ -811,9 +829,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제5
+	/*
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 4; j > i; j--)
@@ -827,9 +847,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제6
+	/*
 	for (int i = 0; i < 10; i += 2)
 	{
 		for (int j = 0; j < i; j += 2)
@@ -843,9 +865,11 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
 #pragma endregion
 
 #pragma region 숙제7
+	/*
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 4; j > i; j--)
@@ -871,5 +895,259 @@ int main()
 		cout << endl;
 	}
 	cout << endl;
+	*/
+#pragma endregion
+
+#pragma region 백준별찍기8
+
+	int lineNum;
+
+	cin >> lineNum;
+
+	for (int i = 1; i < 2 * lineNum; i += 2)
+	{
+		for (int j = 0; j < i; j += 2)
+		{
+			cout << "*";
+		}
+		for (int j = 2 * lineNum - 1; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < i; j += 2)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	for (int i = 1; i < lineNum; i++)
+	{
+		for (int j = lineNum; j > i; j--)
+		{
+			cout << "*";
+		}
+		for (int j = 0; j < 2 * i; j++)
+		{
+			cout << " ";
+		}
+		for (int j = lineNum; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기9
+
+	cin >> lineNum;
+	
+	for (int i = 0; i < 2 * lineNum; i += 2)
+	{
+		for (int j = 0; j < i; j += 2)
+		{
+			cout << " ";
+		}
+		for (int j = 2 * lineNum - 1; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	for (int i = 1; i < lineNum; i++)
+	{
+		for (int j = lineNum - 1; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < 2 * i + 1; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	
+#pragma endregion
+
+#pragma region 백준별찍기10
+	
+	int starBoxNum;
+	cin >> starBoxNum;
+
+	int num = 1;
+	for (int i = 0; i < starBoxNum; i++)
+		num *= 3;
+
+	for (int i = 0; i < num; i++)
+	{
+		for (int j = 0; j < num; j++)
+		{
+			star_10(i, j, num);
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기12
+	
+	cin >> lineNum;
+
+	for (int i = 1; i < lineNum; i++)
+	{
+		for (int j = lineNum; j > i; j--)
+		{
+			cout << " ";
+		}
+		for (int j = 0; j < i; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			cout << " ";
+		}
+		for (int j = lineNum; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기13
+
+	cin >> lineNum;
+
+	for (int i = 1; i < lineNum; i++)
+	{
+		for (int j = 0; j < i; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = lineNum; j > i; j--)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기15
+
+	cin >> lineNum;
+
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = lineNum - 1; j > i; j--)
+		{
+			cout << " ";
+		}
+		cout << "*";
+		for (int j = 0; j < 2 * i - 1; j++)
+		{
+			cout << " ";
+		}
+		if (i > 0)
+			cout << "*";
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 백준별찍기16
+
+	cin >> lineNum;
+
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = lineNum - 1; j > i; j--)
+		{
+			cout << " ";
+		}
+		cout << "*";
+		for (int j = 0; j < i; j++)
+		{
+			cout << " *";
+		}
+		cout << endl;
+	}
+	cout << endl;
+#pragma endregion
+
+#pragma region 백준별찍기17
+
+	cin >> lineNum;
+
+	for (int i = 0; i < lineNum - 1; i++)
+	{
+		for (int j = lineNum - 1; j > i; j--)
+		{
+			cout << " ";
+		}
+		cout << "*";
+		for (int j = 0; j < 2 * i - 1; j++)
+		{
+			cout << " ";
+		}
+		if (i > 0)
+			cout << "*";
+		cout << endl;
+	}
+	for (int i = 0; i < 2 * lineNum - 1; i++)
+		cout << "*";
+	cout << endl << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기20
+
+	cin >> lineNum;
+		
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = 0; j < lineNum; j++)
+		{
+			//if (lineNum == 0)
+			//	cout << "*";
+			//else
+				i % 2 == 1 ? cout << " *" : cout << "* ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+
+#pragma endregion
+
+#pragma region 백준별찍기14
+	
+	cin >> lineNum;
+
+	for (int i = 0; i < lineNum; i++)
+	{
+		for (int j = 0; j < lineNum; j++)
+		{
+			cout << "*";
+		}
+		cout << endl;
+	}
+	cout << endl;
+	
 #pragma endregion
 }
